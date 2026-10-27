@@ -450,16 +450,6 @@ h2 {
 .preview img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .5s; }
 .project:hover .preview img { transform: scale(1.04); }
 
-/* Prévia ao vivo (sites publicados) */
-.preview iframe {
-  position: absolute; top: 0; left: 0;
-  width: 1280px; height: 800px;
-  border: 0;
-  transform-origin: 0 0;
-  pointer-events: none;
-  background: #fff;
-}
-
 /* Arte para projetos sem imagem */
 .preview .art {
   position: absolute; inset: 0;
@@ -578,6 +568,14 @@ h2 {
   .stat strong { font-size: 1.5rem; }
   .contact-actions, .contact-actions > * { width: 100%; }
   .email-copy { justify-content: space-between; }
+}
+
+/* Celulares e tablets: menos efeitos pesados para a GPU */
+@media (max-width: 900px), (hover: none) {
+  .card, .icon-btn { backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .card:not(.contact) { background: var(--card-solid); }
+  .card::before { display: none; }
+  .bg-orb { width: 320px; height: 320px; filter: blur(60px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

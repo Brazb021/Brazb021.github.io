@@ -2,7 +2,7 @@
    EDITE AQUI: tecnologias, interesses e projetos
    ========================================================= */
 
-const TECNOLOGIAS = ['React', 'Python', 'SQL', 'CSS'];
+const TECNOLOGIAS = ['React', 'Python', 'Java', 'SQL', 'CSS', 'Genesys Cloud', 'IVR'];
 
 const INTERESSES = ['🎮 Jogos', '🎧 Música', '🏎️ Automobilismo', '🤖 IA'];
 
@@ -10,15 +10,16 @@ const INTERESSES = ['🎮 Jogos', '🎧 Música', '🏎️ Automobilismo', '🤖
 const FRASES = ['Desenvolvedor', 'Criando sites', 'Automatizando processos', 'Estudante de TI'];
 
 // Para cada projeto:
-//  - imagem: caminho de um print (ex.: 'assets/torque.png'). Opcional.
-//  - preview: URL de um site publicado para mostrar uma prévia ao vivo. Opcional.
-//  - sem imagem nem preview, aparece uma arte com a "sigla".
+//  - imagem: caminho de um print (ex.: 'assets/torque.jpg'). Opcional.
+//  - sem imagem, aparece uma arte com a "sigla".
+//  Use prints em vez de prévias ao vivo: sites embutidos (principalmente com 3D)
+//  consomem muita memória e derrubam o Safari no iPhone.
 const PROJETOS = [
   {
     titulo: 'TORQUE: Vendas de Capacetes Online',
     descricao: 'Loja virtual de capacetes de competição (kart, fórmula, rally e endurance) com visualização 3D em 360° de cada modelo.',
     tags: ['E-commerce', '3D', 'GitHub Pages'],
-    preview: 'https://brazb021.github.io/torque-capacetes/',
+    imagem: 'assets/torque.jpg',
     site: 'https://brazb021.github.io/torque-capacetes/',
     repo: 'https://github.com/Brazb021/loja-capacetes',
   },
@@ -26,7 +27,7 @@ const PROJETOS = [
     titulo: 'Vagas Suporte TI',
     descricao: 'Dashboard que reúne vagas de Suporte TI (N1, N2, Júnior e Help Desk) da Gupy, LinkedIn, InfoJobs e Catho, com filtros por nível, plataforma e período.',
     tags: ['Automação', 'Dashboard', 'GitHub Pages'],
-    preview: 'https://brazb021.github.io/VagasSuporteTI/',
+    imagem: 'assets/vagas.jpg',
     site: 'https://brazb021.github.io/VagasSuporteTI/',
   },
   {
@@ -44,6 +45,9 @@ const ICONES = {
   Python: '<svg viewBox="0 0 24 24"><path d="M12 3c-4 0-4 1.7-4 3v2h4v1H6c-2 0-3 1.5-3 4s1 4 3 4h2v-2.5c0-1.4 1.1-2.5 2.5-2.5h4c1.4 0 2.5-1.1 2.5-2.5V6c0-1.6-1.6-3-5-3z"/><path d="M12 21c4 0 4-1.7 4-3v-2h-4v-1h6c2 0 3-1.5 3-4s-1-4-3-4h-2"/></svg>',
   SQL: '<svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>',
   CSS: '<svg viewBox="0 0 24 24"><path d="m4 3 1.5 17L12 22l6.5-2L20 3z"/><path d="M16 8H8.5l.3 3.5h6.9l-.4 4.5L12 17l-3.3-1"/></svg>',
+  Java: '<svg viewBox="0 0 24 24"><path d="M5 11h12v4a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5z"/><path d="M17 12h1.5a2.5 2.5 0 0 1 0 5H17M9 2c-1 1.5 1 2.5 0 4M13 2c-1 1.5 1 2.5 0 4"/></svg>',
+  'Genesys Cloud': '<svg viewBox="0 0 24 24"><path d="M17.5 19H7a5 5 0 1 1 1-9.9A6 6 0 0 1 19.5 11a4 4 0 0 1-2 8z"/></svg>',
+  IVR: '<svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
 };
 const ICONE_PADRAO = '<svg viewBox="0 0 24 24"><path d="m8 9-4 3 4 3M16 9l4 3-4 3"/></svg>';
 
@@ -67,7 +71,6 @@ function renderInteresses() {
 
 function previewHTML(p) {
   if (p.imagem) return `<img src="${p.imagem}" alt="Prévia de ${p.titulo}" loading="lazy" draggable="false">`;
-  if (p.preview) return `<iframe src="${p.preview}" title="Prévia de ${p.titulo}" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>`;
   if (p.emBreve) return `<div class="art soon"><span>EM BREVE</span></div>`;
   return `<div class="art"><span>${p.sigla || p.titulo.slice(0, 2).toUpperCase()}</span></div>`;
 }
@@ -92,13 +95,6 @@ function renderProjetos() {
   $('#dots').innerHTML = PROJETOS.map((p, i) =>
     `<button role="tab" aria-label="Ir para ${p.titulo}" aria-selected="${i === 0}" data-i="${i}"></button>`
   ).join('');
-}
-
-// Ajusta a escala das prévias ao vivo ao tamanho do card
-function ajustarPreviews() {
-  document.querySelectorAll('.preview iframe').forEach((f) => {
-    f.style.transform = `scale(${f.parentElement.clientWidth / 1280})`;
-  });
 }
 
 function iniciarCarrossel() {
@@ -166,7 +162,7 @@ function iniciarCarrossel() {
   // Evita abrir links ao soltar depois de arrastar
   carousel.addEventListener('click', (e) => { if (moveu) { e.preventDefault(); moveu = false; } }, true);
 
-  window.addEventListener('resize', () => { ajustarPreviews(); atualizar(); });
+  window.addEventListener('resize', atualizar);
   atualizar();
 }
 
@@ -257,7 +253,6 @@ function preencherNumeros() {
 renderTecnologias();
 renderInteresses();
 renderProjetos();
-ajustarPreviews();
 iniciarCarrossel();
 iniciarTema();
 preencherNumeros();
