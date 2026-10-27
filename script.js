@@ -16,10 +16,10 @@ const FRASES = ['Desenvolvedor', 'Criando sites', 'Automatizando processos', 'Es
 const PROJETOS = [
   {
     titulo: 'TORQUE: Vendas de Capacetes Online',
-    descricao: 'Loja virtual de capacetes com catálogo de produtos e experiência de compra online.',
-    tags: ['E-commerce', 'Em desenvolvimento'],
-    sigla: 'TORQUE',
-    // Quando o site estiver no ar, adicione: site: 'https://...',
+    descricao: 'Loja virtual de capacetes de competição (kart, fórmula, rally e endurance) com visualização 3D em 360° de cada modelo.',
+    tags: ['E-commerce', '3D', 'GitHub Pages'],
+    preview: 'https://brazb021.github.io/torque-capacetes/',
+    site: 'https://brazb021.github.io/torque-capacetes/',
     repo: 'https://github.com/Brazb021/loja-capacetes',
   },
   {
